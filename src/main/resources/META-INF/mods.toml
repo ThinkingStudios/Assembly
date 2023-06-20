@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+license = "LGPLv3"
+
+[[mods]]
+modId = "assembly"
+version = "${version}"
+displayName = "Ansamblu"
+displayURL="https://github.com/ThinkingStudios/Assembly" #optional
+logoFile="icon.png" #optional
+credits="Mao" #optional
+authors="TexTrue, ThinkingStudio" #optional
+description = '''
+Assembly unofficial Forge port.
+
+Add more convenience to your game.
+'''
+
+[[dependencies.assembly]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.assembly]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.4,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.assembly]]
+modId = "architectury"
+mandatory = true
+versionRange = "[8,)"
+ordering = "NONE"
+side = "BOTH"

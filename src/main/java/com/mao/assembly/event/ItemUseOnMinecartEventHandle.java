@@ -1,7 +1,7 @@
 package com.mao.assembly.event;
 
+import com.mao.assembly.util.AssemblyEventResult;
 import dev.architectury.event.EventResult;
-import dev.architectury.event.events.common.InteractionEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.*;
@@ -13,9 +13,8 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-public class ItemUseOnMinecartEventHandle implements InteractionEvent.InteractEntity {
-    @Override
-    public EventResult interact(PlayerEntity player, Entity entity, Hand hand) {
+public class ItemUseOnMinecartEventHandle {
+    public static EventResult interact(PlayerEntity player, Entity entity, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         World world = player.getWorld();
         EntityHitResult entityHitResult = new EntityHitResult(entity);
@@ -32,7 +31,7 @@ public class ItemUseOnMinecartEventHandle implements InteractionEvent.InteractEn
                     }
                 }
                 player.incrementStat(Stats.USED.getOrCreateStat(Items.CHEST));
-                return AssemblyResult.SUCCESS;
+                return AssemblyEventResult.SUCCESS;
             } else if (stack.isOf(Items.HOPPER) && player.isSneaky()) {
                 minecartEntity.discard();
                 HopperMinecartEntity hopperMinecartEntity = new HopperMinecartEntity(world, entityHitResult.getPos().x, entityHitResult.getPos().y, entityHitResult.getPos().z);
@@ -44,7 +43,7 @@ public class ItemUseOnMinecartEventHandle implements InteractionEvent.InteractEn
                         stack.decrement(1);
                     }
                     player.incrementStat(Stats.USED.getOrCreateStat(Items.HOPPER));
-                    return AssemblyResult.SUCCESS;
+                    return AssemblyEventResult.SUCCESS;
                 }
             } else if (stack.isOf(Items.TNT) && player.isSneaky()) {
                 minecartEntity.discard();
@@ -58,7 +57,7 @@ public class ItemUseOnMinecartEventHandle implements InteractionEvent.InteractEn
                     }
                 }
                 player.incrementStat(Stats.USED.getOrCreateStat(Items.TNT));
-                return AssemblyResult.SUCCESS;
+                return AssemblyEventResult.SUCCESS;
             } else if (stack.isOf(Items.FURNACE) && player.isSneaky()) {
                 minecartEntity.discard();
                 FurnaceMinecartEntity furnaceMinecartEntity = new FurnaceMinecartEntity(world, entityHitResult.getPos().x, entityHitResult.getPos().y, entityHitResult.getPos().z);
@@ -71,9 +70,9 @@ public class ItemUseOnMinecartEventHandle implements InteractionEvent.InteractEn
                     }
                 }
                 player.incrementStat(Stats.USED.getOrCreateStat(Items.FURNACE));
-                return AssemblyResult.SUCCESS;
+                return AssemblyEventResult.SUCCESS;
             }
         }
-        return AssemblyResult.PASS;
+        return AssemblyEventResult.PASS;
     }
 }

@@ -1,7 +1,7 @@
 package com.mao.assembly.event;
 
+import com.mao.assembly.util.AssemblyEventResult;
 import dev.architectury.event.EventResult;
-import dev.architectury.event.events.common.InteractionEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,9 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public class ItemUseOnRailEventHandle implements InteractionEvent.RightClickBlock {
-    @Override
-    public EventResult click(PlayerEntity player, Hand hand, BlockPos pos, Direction face) {
+public class ItemUseOnRailEventHandle {
+    public static EventResult click(PlayerEntity player, Hand hand, BlockPos pos, Direction face) {
         ItemStack MainStack = player.getStackInHand(Hand.MAIN_HAND);
         ItemStack OffStack = player.getStackInHand(Hand.OFF_HAND);
         World world = player.getWorld();
@@ -46,6 +45,6 @@ public class ItemUseOnRailEventHandle implements InteractionEvent.RightClickBloc
                 MainStack.decrement(1);
             }
         }
-        return AssemblyResult.PASS;
+        return AssemblyEventResult.PASS;
     }
 }
